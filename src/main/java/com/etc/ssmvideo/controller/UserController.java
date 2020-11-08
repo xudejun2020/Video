@@ -55,6 +55,25 @@ public class UserController {
     }
     /*
      * @XDJ
+     * 用户退出登录的方法
+     *使session无效
+     * */
+    @RequestMapping(value = "/loginOut",method = RequestMethod.GET)
+    public void loginOut(HttpSession session,HttpServletResponse response){
+        session.invalidate();
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        out.print("<script>location.href='../index.jsp';</script>");
+        out.flush();
+        out.close();
+    }
+    /*
+     * @XDJ
      * 用户注册的方法
      *判断用户注册账号是否已被注册
      * */

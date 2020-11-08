@@ -589,14 +589,13 @@
                     <!-- User menu -->
 
                     <ul class="dropdown-user-menu">
-                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a> </li>
+
                         <c:if test="${sessionScope.loginUser==null}">
                             <li><a href="form-login.jsp"> <i class="uil-user"></i> Login In </a> </li>
                         </c:if>
                         <c:if test="${sessionScope.loginUser!=null}">
-                            <li><a href="form-myInfo.jsp"> <i class="uil-user"></i> My Info </a> </li>
-                        </c:if>
-                        <li><a href="#"> <i class="uil-user"></i> Login In </a> </li>
+                        <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a> </li>
+                        <li><a href="form-myInfo.jsp"> <i class="uil-user"></i> My Info </a> </li>
                         <li><a href="#"> <i class="uil-thumbs-up"></i> Liked Videos </a></li>
                         <li><a href="#"> <i class="uil-history"></i> Watch Later </a></li>
                         <li><a href="#"> <i class="uil-cog"></i> Account Settings</a></li>
@@ -612,8 +611,10 @@
                         <div class="menu-divider">
                             <li><a href="#"> <i class="icon-feather-help-circle"></i> Help</a>
                             </li>
-                            <li><a href="#"> <i class="icon-feather-log-out"></i> Sing Out</a>
-                            </li>
+                            <c:if test="${sessionScope.loginUser!=null}">
+                            <li><a href="user/loginOut"><i class="icon-feather-log-out"></i> Login Out</a></li>
+                            </c:if>
+                        </c:if>
                     </ul>
 
 
