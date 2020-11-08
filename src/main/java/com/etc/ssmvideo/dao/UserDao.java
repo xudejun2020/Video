@@ -31,4 +31,5 @@ public interface UserDao {
      *判断用户注册邮箱是否已被注册
      * */
     public User isCheckRegisterEmail(String email);
+
 }

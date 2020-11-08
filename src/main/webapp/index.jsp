@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 
@@ -548,8 +550,13 @@
 
 
                 <!-- profile -image -->
-                <a class="opts_account"> <img src="assets/images/avatars/avatar-1.jpg" alt=""></a>
-
+                <%--是否已登录--%>
+                <c:if test="${empty sessionScope.loginUser}">
+                    <a class="opts_account"> <img src="images/默认.jpg" alt=""></a>
+                </c:if>
+                <c:if test="${not empty sessionScope.loginUser}">
+                    <a class="opts_account"><img src='images/${sessionScope.loginUser.user_img}' alt='${sessionScope.loginUser.user_name}'></a>
+                </c:if>
                 <!-- profile dropdown-->
                 <div uk-dropdown="pos: top-right;mode:click ; animation: uk-animation-slide-bottom-small"
                      class="dropdown-notifications small">
@@ -559,10 +566,21 @@
 
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-avatar">
-                                <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                                <c:if test="${empty sessionScope.loginUser}">
+                                    <img src="images/默认.jpg" alt="">
+                                </c:if>
+                                <c:if test="${not empty sessionScope.loginUser}">
+                                    <img src='images/${sessionScope.loginUser.user_img}' alt='${sessionScope.loginUser.user_name}'></a>
+                                </c:if>
                             </div>
                             <div class="dropdown-user-name">
-                                Richard Ali <span> verified <i class="uil-check"></i> </span>
+                                <c:if test="${empty sessionScope.loginUser}">
+                                    ${sessionScope.loginUser.user_name} <span> verified <i class="uil-check"></i> </span>
+                                </c:if>
+                                <c:if test="${not empty sessionScope.loginUser}">
+                                    ${sessionScope.loginUser.user_name} <span> verified <i class="uil-check"></i> </span>
+                                </c:if>
+
                             </div>
                         </div>
 
@@ -572,7 +590,13 @@
 
                     <ul class="dropdown-user-menu">
                         <li><a href="#"> <i class="uil-bolt"></i> Go PRO</a> </li>
-                        <li><a href="#"> <i class="uil-user"></i> My Channal </a> </li>
+                        <c:if test="${sessionScope.loginUser==null}">
+                            <li><a href="form-login.jsp"> <i class="uil-user"></i> Login In </a> </li>
+                        </c:if>
+                        <c:if test="${sessionScope.loginUser!=null}">
+                            <li><a href="form-myInfo.jsp"> <i class="uil-user"></i> My Info </a> </li>
+                        </c:if>
+                        <li><a href="#"> <i class="uil-user"></i> Login In </a> </li>
                         <li><a href="#"> <i class="uil-thumbs-up"></i> Liked Videos </a></li>
                         <li><a href="#"> <i class="uil-history"></i> Watch Later </a></li>
                         <li><a href="#"> <i class="uil-cog"></i> Account Settings</a></li>

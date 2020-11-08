@@ -14,6 +14,7 @@
 	<mvc:resources location="/images/" mapping="/images/**" />
 	<mvc:resources location="/video/" mapping="/video/**" />
 	<mvc:resources location="/ckplayer/" mapping="/ckplayer/**" />
+	<mvc:resources mapping="/images/**" location="/images/"/>
 
 	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<property name="favorPathExtension" value="false" />

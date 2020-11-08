@@ -124,13 +124,12 @@ public class UserController {
                 file = new File(realPath + "/" + myRenameFile.myRename(myfile.getOriginalFilename()));
                 FileUtils.copyInputStreamToFile(myfile.getInputStream(),file);
                 flag = true;
-                System.out.println("success");
             } catch (IOException e) {
                 flag = false;
                 e.printStackTrace();
                 out.print("<script>alert('上传失败');history.go(-1)</script>");
             }
-            user.setUser_img(file.getPath());
+            user.setUser_img(myRenameFile.myRename(myfile.getOriginalFilename()));
         }
         try {
             if(userBiz.addUser(user)){
