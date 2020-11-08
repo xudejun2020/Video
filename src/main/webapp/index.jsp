@@ -171,6 +171,7 @@
                                 .. </a> </li>
                             <div class="menu-divider">
                                 <li class="list-footer"> <a href="your-history.html"> Searches History </a></li>
+                            </div>
                         </ul>
 
                     </div>
@@ -617,7 +618,7 @@
                         </c:if>
                     </ul>
 
-
+        </header>
                 </div>
 
             </div>
