@@ -25,4 +25,10 @@ public interface UserDao {
      *判断用户注册账号是否已被注册
      * */
     public User isCheckRegisterName(String name);
+    /*
+     * @XDJ
+     * 用户注册的方法
+     *判断用户注册邮箱是否已被注册
+     * */
+    public User isCheckRegisterEmail(String email);
 }

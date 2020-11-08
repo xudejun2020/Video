@@ -60,7 +60,6 @@ public class UserController {
      * */
     @RequestMapping("/checkName")
     public void checkName(HttpServletRequest request,HttpServletResponse response){
-        System.out.println(3);
         String name = request.getParameter("name");
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = null;
@@ -70,7 +69,30 @@ public class UserController {
             e.printStackTrace();
         }
         User user = userBiz.isCheckRegisterName(name);
-        System.out.println(user);
+        if(user != null){
+            out.print(1);
+        }else{
+            out.print(2);
+        }
+        out.flush();
+        out.close();
+    }
+    /*
+     * @XDJ
+     * 用户注册的方法
+     *判断用户注册邮箱是否已被注册
+     * */
+    @RequestMapping("/checkEmail")
+    public void checkEmail(HttpServletRequest request,HttpServletResponse response){
+        String email = request.getParameter("email");
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        User user = userBiz.isCheckRegisterEmail(email);
         if(user != null){
             out.print(1);
         }else{

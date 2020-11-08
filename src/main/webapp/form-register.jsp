@@ -82,9 +82,17 @@
                 canRegister = false;
                 return false;
             }else{
-                $("#divemail").html("<font color='green' size='1'>√输入格式正确</font>");
-                canRegister = true;
-                return true;
+                $.get("user/checkEmail",{email:op},function (data) {
+                    if (data == 1){
+                        $("#divemail").html("<font color='red' size='1'>×邮箱已被注册</font>");
+                        canRegister = false;
+                        return false;
+                    }else {
+                        $("#divemail").html("<font color='green' size='1'>√输入格式正确</font>");
+                        canRegister = true;
+                        return true;
+                    }
+                })
             }
         }
         function isRegisterUserPwdEmpty() {

@@ -48,4 +48,12 @@ public class UserBizImpl implements UserBiz {
         }
         return userDao.isCheckRegisterName(name);
     }
+
+    @Override
+    public User isCheckRegisterEmail(String email) {
+        if(email==null||email.equals("")){
+            return null;
+        }
+        return userDao.isCheckRegisterEmail(email);
+    }
 }

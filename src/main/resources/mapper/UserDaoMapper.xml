@@ -26,4 +26,12 @@
    <select id="isCheckRegisterName" parameterType="String" resultType="user">
         select * from t_user where user_name = #{user_name}
     </select>
+    <!--/*
+    * @XDJ
+    * 用户注册的方法
+    *判断用户注册邮箱是否已被注册
+    * */-->
+    <select id="isCheckRegisterEmail" parameterType="String" resultType="user">
+        select * from t_user where user_email = #{user_email}
+    </select>
 </mapper>
