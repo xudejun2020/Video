@@ -1,0 +1,28 @@
+package com.etc.ssmvideo.dao;
+
+
+import com.etc.ssmvideo.entity.User;
+import org.springframework.stereotype.Repository;
+
+@Repository
+
+public interface UserDao {
+    /*
+     * @XDJ
+     * 检测用户登录的方法
+     *判断用户密码是否一致
+     * */
+    public User loginUser(User user);
+    /*
+     * @XDJ
+     * 注册用户账号的方法
+     *
+     * */
+    public boolean addUser(User user);
+    /*
+     * @XDJ
+     * 用户注册的方法
+     *判断用户注册账号是否已被注册
+     * */
+    public User isCheckRegisterName(String name);
+}

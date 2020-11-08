@@ -1,0 +1,19 @@
+﻿<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 添加相关的功能的启用,比如缓存 懒加载
+    <settings name="" value=""></settings>-->
+<!--
+    <typeAliases> -->
+        <!-- 为实体类取别名
+     <typeAlias type="com.etc.blog.entity.User" alias="user"></typeAlias>-->
+     <!-- 为整个实体类包下面的所有类取别名  后面用到这些类时,可以直接用类名或者类名首字母小写
+     <package name="com.etc.ssm.entity"/>
+    </typeAliases>
+-->
+
+
+
+</configuration>

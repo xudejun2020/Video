@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:aop="http://www.springframework.org/schema/aop" 
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		   http://www.springframework.org/schema/tx 
+		   http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		   http://www.springframework.org/schema/task
+           http://www.springframework.org/schema/task/spring-task-4.0.xsd
+           " >
+           <!-- 设置aop 设置为允许aop 织入代码 -->
+           <aop:aspectj-autoproxy proxy-target-class="true"/>
+           
+           <!--配置要扫描的包 -->
+         <context:component-scan base-package="com.etc.ssmvideo.bizimpl,com.etc.ssmvideo.util"/>
+
+    <!-- 定时任务启动器生效-->
+    <task:annotation-driven />
+
+        <!-- 事务管理对象-->
+     <bean id="dstmanager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+         <property name="dataSource" ref="dataSource"></property>
+     </bean>
+
+       <!-- 配置实现事务的bean-->
+       <tx:annotation-driven transaction-manager="dstmanager"/>
+
+        <!-- <context:property-placeholder location="classpath:jdbc.properties" />-->
+        <!-- 数据源-->
+          <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+              <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+              <property name="url" value="jdbc:mysql://localhost:3307/video?useUnicode=true&amp;serverTimezone=UTC&amp;characterEncoding=utf-8"></property>
+              <property name="username" value="root"></property>
+              <property name="password" value="ye721027"></property>
+
+              <property name="initialSize" value="1"></property>
+              <!--最大活跃数-->
+              <property name="maxActive" value="500"></property>
+              <!--空闲数-->
+              <property name="minIdle" value="1"></property>
+              <property name="maxIdle" value="10"></property>
+              <!-- 要将事务自动提交关闭-->
+              <property name="defaultAutoCommit" value="false"></property>
+          </bean>
+
+    <!-- 配置sqlsessionfactory-->
+  <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <!-- 引用配置好的数据源 -->
+      <property name="dataSource" ref="dataSource"></property>
+      <!--引用mybatis总配置文件-->
+      <property name="configLocation" value="classpath:SqlMapConfig.xml"></property>
+      <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+      <property name="typeAliasesPackage" value="com/etc/ssmvideo/entity"></property>
+  </bean >
+
+   <!-- 读dao   maven使用-->
+    <bean  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.etc.ssmvideo.dao"></property>
+    </bean>
+
+</beans>   

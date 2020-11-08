@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.ssmvideo.dao.UserDao">
+    <!--
+         * @XDJ
+         * 检测用户登录的方法
+         *判断用户密码是否一致
+    -->
+    <select id="loginUser" resultType="user" parameterType="user">
+    select * from t_user where (user_name = #{user_name} or user_email = #{user_email}) and user_psw = #{user_psw}
+    </select>
+<!--/*
+     * @XDJ
+     * 注册用户账号的方法
+     *
+     * */
+    -->
+    <insert id="addUser" parameterType="user">
+        insert into t_user (user_name,user_psw,user_email,user_img) values (#{user_name},#{user_psw},#{user_email},#{user_img});
+    </insert>
+    <!--/*
+    * @XDJ
+    * 用户注册的方法
+    *判断用户注册账号是否已被注册
+    * */-->
+   <select id="isCheckRegisterName" parameterType="String" resultType="user">
+        select * from t_user where user_name = #{user_name}
+    </select>
+</mapper>
